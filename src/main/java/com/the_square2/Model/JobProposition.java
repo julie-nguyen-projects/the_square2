@@ -12,8 +12,8 @@ import java.util.Set;
 @Builder
 @Getter
 @Entity
-@Table(name= "city")
-public class City implements Serializable {
+@Table(name= "job_proposition")
+public class JobProposition implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,10 +25,9 @@ public class City implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @ManyToMany(mappedBy = "jobPropositions")
+    private Set<Skill> skills;
+
     @ManyToOne
-    private Country country;
-
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private Set<User> users;
-
+    private Company company;
 }

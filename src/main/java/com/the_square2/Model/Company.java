@@ -12,8 +12,8 @@ import java.util.Set;
 @Builder
 @Getter
 @Entity
-@Table(name= "skill")
-public class Skill implements Serializable {
+@Table(name= "company")
+public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,14 +25,21 @@ public class Skill implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "skills")
-    private Set<User> users;
+    @Column(name = "siret")
+    private long siret;
 
-    @ManyToMany
-    @JoinTable(
-            name = "skills_jobs",
-            joinColumns = {@JoinColumn(name = "skill_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "job_id", referencedColumnName = "id")}
-    )
+    @Column(name = "siren")
+    private long siren;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToMany(mappedBy = "companiesRelations")
+    private Set<User> usersRelations;
+
+    @OneToMany(mappedBy = "company")
     private Set<JobProposition> jobPropositions;
+
+    @ManyToMany(mappedBy = "companies")
+    private Set<ActivityDomain> activities;
 }

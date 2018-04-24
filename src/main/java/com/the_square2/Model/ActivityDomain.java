@@ -12,8 +12,8 @@ import java.util.Set;
 @Builder
 @Getter
 @Entity
-@Table(name= "city")
-public class City implements Serializable {
+@Table(name= "activity_domain")
+public class ActivityDomain implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,10 +25,14 @@ public class City implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    private Country country;
+    @ManyToMany(mappedBy = "activities")
+    public Set<User> users;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private Set<User> users;
-
+    @ManyToMany
+    @JoinTable(
+            name = "activities_companies",
+            joinColumns = {@JoinColumn(name = "activity_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "company_id", referencedColumnName = "id")}
+    )
+    private Set<Company> companies;
 }
