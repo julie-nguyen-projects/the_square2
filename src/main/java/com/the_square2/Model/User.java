@@ -14,7 +14,7 @@ import java.util.Set;
 @Builder
 @Getter
 @Entity
-@Table(name= "user")
+@Table(name= "user_social")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,4 +77,11 @@ public class User implements Serializable {
     )
     private Set<TrainingEducationLevel> trainingsEducationLevels;
 
+    @ManyToMany
+    @JoinTable(
+            name = "users_friends",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "friend_id", referencedColumnName = "id")}
+    )
+    private Set<User> usersRelations;
 }
