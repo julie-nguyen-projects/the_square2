@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Set;
 
 @ToString
-@Builder
 @Getter @Setter
 @Entity
 @Table(name= "user_social")
@@ -81,4 +80,7 @@ public class User implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "friend_id", referencedColumnName = "id")}
     )
     private Set<User> usersRelations;
+
+    public User() {
+    }
 }
