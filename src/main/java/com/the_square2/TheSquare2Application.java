@@ -15,15 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ComponentScan("com.the_square2")
 @EnableJpaRepositories
 @EnableAutoConfiguration
-@Controller
 public class TheSquare2Application {
 
     public static void main(String[] args) {
         SpringApplication.run(TheSquare2Application.class, args);
-    }
-
-    @RequestMapping("/hello")
-    public String sayHello() {
-        return "Hello";
     }
 }
