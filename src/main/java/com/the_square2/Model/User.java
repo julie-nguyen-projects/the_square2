@@ -1,18 +1,15 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Set;
 
 @ToString
 @Builder
-@Getter
+@Getter @Setter
 @Entity
 @Table(name= "user_social")
 public class User implements Serializable {
