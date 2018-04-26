@@ -1,6 +1,31 @@
 $(document).ready(function () {
     var url = window.location;
 
+    function getUsers() {
+        $.ajax({
+            type : "GET",
+            url : url + "/users",
+            success: function(data){
+                fillUsersArray(data);
+            },
+            error : function(e) {
+                fillUsersArray(null);
+                console.log(e);
+            }
+        });
+    }
+
+    function fillUsersArray(data) {
+        data.forEach(function(item){
+            $('tbody').append('<tr>' +
+                '<td>'+item.firstName+'</td>' +
+                '<td>'+item.lastName+'</td>' +
+                '<td>'+item.city.name +'</td>' +
+                '<td>'+item.birthday+'</td>' +
+                '</tr>')
+        });
+    }
+
     $("#btnId").click(function(event){
         event.preventDefault();
 
@@ -39,4 +64,5 @@ $(document).ready(function () {
         }
     }
 
+    getUsers();
 });

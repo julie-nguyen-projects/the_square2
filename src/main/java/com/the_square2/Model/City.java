@@ -1,15 +1,13 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-@ToString
-@Builder
 @Getter
 @Entity
 @Table(name= "city")
@@ -25,10 +23,24 @@ public class City implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonBackReference("city-country")
     @ManyToOne
     private Country country;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private Set<User> users;
+    @JsonBackReference("user-city")
+    @OneToMany(mappedBy = "city")
+    private Set<User> users = new HashSet<>();
 
+    public City() {
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country=" + country.getName() + '\'' +
+                ", users=" + users +
+                '}';
+    }
 }
