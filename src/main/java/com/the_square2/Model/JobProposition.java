@@ -30,4 +30,8 @@ public class JobProposition implements Serializable {
 
     @ManyToOne
     private Company company;
+
+    private String jobDescription;
+
+    private int grossWage;
 }

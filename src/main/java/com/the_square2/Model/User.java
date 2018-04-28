@@ -71,7 +71,7 @@ public class User implements Serializable {
     @JoinTable(
             name = "users_training_education_level",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "training_educ_id", referencedColumnName = "id")}
+            inverseJoinColumns = {@JoinColumn(name = "training_educ_level_id", referencedColumnName = "id")}
     )
     private Set<TrainingEducationLevel> trainingsEducationLevels;
 
