@@ -5,8 +5,6 @@
     <title>The Square</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.0/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" /> -->
-
 </head>
 <body>
 
@@ -14,7 +12,6 @@
     <div class="row">
         <h1>Super réseau social \o/</h1>
     </div>
-
 
     <div class="container">
         <h3>Nos utilisateurs</h3>
@@ -33,48 +30,64 @@
         </div>
     </div>
 
+    <div class="container">
+        <h3>Utilisateurs avec au moins un point commun avec le user d'ID 1 : </h3>
+
+        <div class="table-content">
+            <table class="table table-striped" id="usersCommonPoints">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Birthday</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div class="container">
-        <h3>Utilisateurs avec au moins un point commun avec Julie NGUYEN : </h3>
+        <h3>Utilisateurs amis avec les utilisateurs liés au user d'ID 1 : </h3>
 
-                <div class="table-content">
-                    <table class="table table-striped" id="usersCommonPoints">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Firstname</th>
-                            <th scope="col">Lastname</th>
-                            <th scope="col">Birthday</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+        <div class="table-content">
+            <table class="table table-striped" id="friendsoffriends">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Birthday</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" id="btnId">Open Modal</button>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" id="btnId">Open Modal</button>
 
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="modalId" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Bootstrap Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Header</h4>
-            </div>
-            <div class="modal-body">
-                <p id="firstName"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <div class="modal fade" id="modalId" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Bootstrap Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="firstName"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
 
 <script src="webjars/jquery/3.3.1-1/jquery.js"></script>
 <script src="webjars/bootstrap/4.1.0/js/bootstrap.js"></script>

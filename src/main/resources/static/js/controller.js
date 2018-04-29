@@ -39,6 +39,8 @@ $(document).ready(function () {
         });
     }
 
+
+
     function fillUsersCommonPointsArray(data) {
         data.forEach(function(item){
             $('#usersCommonPoints').children('tbody').append('<tr>' +
@@ -48,6 +50,31 @@ $(document).ready(function () {
                 '</tr>')
         });
     }
+
+    function getFriendsOfFriends() {
+        $.ajax({
+            type : "GET",
+            url : url + "/friends-friends",
+            success: function(data){
+                fillFriendsArray(data);
+            },
+            error : function(e) {
+                fillFriendsArray(null);
+                console.log(e);
+            }
+        });
+    }
+
+    function fillFriendsArray(data) {
+        data.forEach(function(item){
+            $('#friendsoffriends').children('tbody').append('<tr>' +
+                '<td>'+item.firstName+'</td>' +
+                '<td>'+item.lastName+'</td>' +
+                '<td>'+item.birthday+'</td>' +
+                '</tr>')
+        });
+    }
+
 
     $("#btnId").click(function(event){
         event.preventDefault();
@@ -89,4 +116,5 @@ $(document).ready(function () {
 
     getUsers();
     getUsersWithCommonPoints();
+    getFriendsOfFriends();
 });
