@@ -21,7 +21,6 @@ $(document).ready(function () {
                 '<td>'+item.firstName+'</td>' +
                 '<td>'+item.lastName+'</td>' +
                 '<td>'+item.city.name +'</td>' +
-                '<td>'+item.birthday+'</td>' +
                 '</tr>')
         });
     }
@@ -45,7 +44,6 @@ $(document).ready(function () {
             $('#usersCommonPoints').children('tbody').append('<tr>' +
                 '<td>'+item.firstName+'</td>' +
                 '<td>'+item.lastName+'</td>' +
-                '<td>'+item.city.name +'</td>' +
                 '<td>'+item.birthday+'</td>' +
                 '</tr>')
         });
