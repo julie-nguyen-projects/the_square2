@@ -41,7 +41,6 @@ $(document).ready(function () {
     }
 
     function fillUsersCommonPointsArray(data) {
-        console.error(data);
         data.forEach(function(item){
             $('#usersCommonPoints').children('tbody').append('<tr>' +
                 '<td>'+item.firstName+'</td>' +

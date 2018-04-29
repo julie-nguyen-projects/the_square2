@@ -20,9 +20,7 @@ public class UserResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getAllUsers() {
-        List<User> users = userService.getAll();
-        System.out.println(users);
-        return users;
+        return userService.getAll();
     }
 
 }

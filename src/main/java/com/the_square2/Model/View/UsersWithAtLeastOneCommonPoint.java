@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -29,4 +28,35 @@ public class UsersWithAtLeastOneCommonPoint {
 
     @Column(name = "cityId")
     private Long city;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Long getCity() {
+        return city;
+    }
+
+    public UsersWithAtLeastOneCommonPoint() {
+    }
+
+    public UsersWithAtLeastOneCommonPoint(Long id, Date birthday, String firstName, String lastName, Long city) {
+        this.id = id;
+        this.birthday = birthday;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+    }
 }
