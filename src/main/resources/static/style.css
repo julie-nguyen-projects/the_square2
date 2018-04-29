@@ -1,26 +1,33 @@
-table {
+.usersTableDiv {
+    height: 250px;
+    overflow-y: auto;
+}
+
+.table-fixed tbody {
+    height: 200px;
+    overflow-y: auto;
     width: 100%;
 }
 
-thead, tbody, tr, td, th { display: block; }
+.table-fixed thead th {
+    height: 75px;
+}
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
 
-tr:after {
-    content: ' ';
+.table-fixed tr:after {
+    content: "";
     display: block;
     visibility: hidden;
     clear: both;
 }
 
-thead th {
-    height: 50px;
-}
-
-tbody {
-    height: 250px;
-    overflow-y: auto;
-}
-
-tbody td, thead th {
-    width: 33.3%;
+.table-fixed tbody td,
+.table-fixed thead > tr > th {
     float: left;
 }
