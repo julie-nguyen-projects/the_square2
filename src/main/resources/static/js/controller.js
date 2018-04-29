@@ -26,6 +26,32 @@ $(document).ready(function () {
         });
     }
 
+    function getUsersWithCommonPoints() {
+        $.ajax({
+            type : "GET",
+            url : url + "/users-common-point",
+            success: function(data){
+                fillUsersCommonPointsArray(data);
+            },
+            error : function(e) {
+                fillUsersCommonPointsArray(null);
+                console.log(e);
+            }
+        });
+    }
+
+    function fillUsersCommonPointsArray(data) {
+        console.error(data);
+        data.forEach(function(item){
+            $('#usersCommonPoints').children('tbody').append('<tr>' +
+                '<td>'+item.firstName+'</td>' +
+                '<td>'+item.lastName+'</td>' +
+                '<td>'+item.city.name +'</td>' +
+                '<td>'+item.birthday+'</td>' +
+                '</tr>')
+        });
+    }
+
     $("#btnId").click(function(event){
         event.preventDefault();
 
@@ -65,4 +91,5 @@ $(document).ready(function () {
     }
 
     getUsers();
+    getUsersWithCommonPoints();
 });
