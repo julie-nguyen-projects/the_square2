@@ -7,14 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Immutable
 @Getter
 @Table(name = "skillsandactdomsbetweenusersandcompanies")
-public class LinkBetweenUsersAndCompanies {
+public class LinkBetweenUsersAndCompanies implements Serializable {
 
     @Id
+    @Column(name = "oid")
+    private Long oid;
+
     @Column(name = "id")
     private Long id;
 
