@@ -1,15 +1,10 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
-@ToString
-@Builder
 @Getter
 @Entity
 @Table(name= "hobby")
@@ -25,6 +20,14 @@ public class Hobby implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "hobbies")
-    public Set<User> users;
+    public Hobby() {
+    }
+
+    @Override
+    public String toString() {
+        return "Hobby{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

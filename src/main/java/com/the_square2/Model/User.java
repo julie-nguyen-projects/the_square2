@@ -1,18 +1,15 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Set;
 
-@ToString
-@Builder
-@Getter
+@Getter @Setter
 @Entity
 @Table(name= "user_social")
 public class User implements Serializable {
@@ -33,6 +30,7 @@ public class User implements Serializable {
     @Column(name = "birthday")
     private Date birthday;
 
+    @JsonManagedReference("user-city")
     @ManyToOne
     private City city;
 
@@ -73,7 +71,7 @@ public class User implements Serializable {
     @JoinTable(
             name = "users_training_education_level",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "training_educ_id", referencedColumnName = "id")}
+            inverseJoinColumns = {@JoinColumn(name = "training_educ_level_id", referencedColumnName = "id")}
     )
     private Set<TrainingEducationLevel> trainingsEducationLevels;
 
@@ -84,4 +82,24 @@ public class User implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "friend_id", referencedColumnName = "id")}
     )
     private Set<User> usersRelations;
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", city=" + city.getName() + '\'' +
+                ", skills=" + skills +
+                ", hobbies=" + hobbies +
+                ", companiesRelations=" + companiesRelations +
+                ", activities=" + activities +
+                ", trainingsEducationLevels=" + trainingsEducationLevels +
+                ", usersRelations=" + usersRelations +
+                '}';
+    }
 }

@@ -1,15 +1,13 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-@ToString
-@Builder
 @Getter
 @Entity
 @Table(name= "country")
@@ -25,6 +23,19 @@ public class Country implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonManagedReference("city-country")
     @OneToMany(mappedBy = "country")
-    private Set<City> cities;
+    private Set<City> cities = new HashSet<>();
+
+    public Country() {
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cities=" + cities +
+                '}';
+    }
 }
