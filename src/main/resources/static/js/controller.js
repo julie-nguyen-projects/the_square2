@@ -17,52 +17,90 @@ $(document).ready(function () {
 
     function fillUsersArray(data) {
         data.forEach(function(item){
-            $('tbody').append('<tr>' +
+            $('#usersTable').children('tbody').append('<tr>' +
                 '<td>'+item.firstName+'</td>' +
                 '<td>'+item.lastName+'</td>' +
                 '<td>'+item.city.name +'</td>' +
-                '<td>'+item.birthday+'</td>' +
                 '</tr>')
         });
     }
 
-    $("#btnId").click(function(event){
-        event.preventDefault();
-
-        // Open Bootstrap Modal
-        openModel();
-        // Get data from Server
-        ajaxGet();
-    });
-
-    // Open Bootstrap Modal
-    function openModel(){
-        $("#modalId").modal();
-    }
-
-// DO GET
-    function ajaxGet(){
+    function getUsersWithCommonPoints() {
         $.ajax({
             type : "GET",
-            url : url + "/users",
+            url : url + "/users-common-point",
             success: function(data){
-                // fill data to Modal Body
-                fillData(data);
+                fillUsersCommonPointsArray(data);
             },
             error : function(e) {
-                fillData(null);
+                fillUsersCommonPointsArray(null);
+                console.log(e);
             }
         });
     }
 
-    function fillData(data){
-        console.log(data);
-        if(data!=null){
-            $(".modal-body #firstName").text(data[0].firstName);
-        }else{
-            $(".modal-body #firstName").text("Can Not Get Data from Server!");
-        }
+
+
+    function fillUsersCommonPointsArray(data) {
+        data.forEach(function(item){
+            $('#usersCommonPoints').children('tbody').append('<tr>' +
+                '<td>'+item.firstName+'</td>' +
+                '<td>'+item.lastName+'</td>' +
+                '</tr>')
+        });
+    }
+
+    function getFriendsOfFriends() {
+        $.ajax({
+            type : "GET",
+            url : url + "/friends-friends",
+            success: function(data){
+                fillFriendsArray(data);
+            },
+            error : function(e) {
+                fillFriendsArray(null);
+                console.log(e);
+            }
+        });
+    }
+
+    function fillFriendsArray(data) {
+        data.forEach(function(item){
+            $('#friendsoffriends').children('tbody').append('<tr>' +
+                '<td>'+item.firstName+'</td>' +
+                '<td>'+item.lastName+'</td>' +
+                '</tr>')
+        });
+    }
+
+    function getLinksBetweenUsersAndCompanies() {
+        $.ajax({
+            type : "GET",
+            url : url + "/links",
+            success: function(data){
+                fillUsersCompaniesArray(data);
+            },
+            error : function(e) {
+                fillUsersCompaniesArray(null);
+                console.log(e);
+            }
+        });
+    }
+
+    function fillUsersCompaniesArray(data) {
+        data.forEach(function(item){
+            $('#users-companies').children('tbody').append('<tr>' +
+                '<td class="col-xs-3 col-lg-3">'+item.firstName+' ' + item.lastName + '</td>' +
+                '<td class="col-xs-3 col-lg-3">'+item.jobPropositionName+'</td>' +
+                '<td class="col-xs-2 col-lg-2">'+item.companyName+'</td>' +
+                '<td class="col-xs-2 col-lg-2">'+item.nbOfSkillsInCommon+'</td>' +
+                '<td class="col-xs-2 col-lg-2">'+item.nbOfActDomInCommon+'</td>' +
+                '</tr>')
+        });
     }
 
     getUsers();
+    getUsersWithCommonPoints();
+    getFriendsOfFriends();
+    getLinksBetweenUsersAndCompanies();
 });

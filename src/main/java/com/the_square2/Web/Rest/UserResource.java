@@ -2,7 +2,6 @@ package com.the_square2.Web.Rest;
 
 import com.the_square2.Model.User;
 import com.the_square2.Service.Impl.UserServiceImpl;
-import com.the_square2.Service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +20,7 @@ public class UserResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getAllUsers() {
-        List<User> users = userService.getAll();
-        System.out.println(users);
-        return users;
+        return userService.getAll();
     }
 
 }

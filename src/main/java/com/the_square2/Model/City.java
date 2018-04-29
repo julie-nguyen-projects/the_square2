@@ -5,8 +5,6 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Entity
@@ -27,10 +25,6 @@ public class City implements Serializable {
     @ManyToOne
     private Country country;
 
-    @JsonBackReference("user-city")
-    @OneToMany(mappedBy = "city")
-    private Set<User> users = new HashSet<>();
-
     public City() {
     }
 
@@ -40,7 +34,6 @@ public class City implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", country=" + country.getName() + '\'' +
-                ", users=" + users +
                 '}';
     }
 }
