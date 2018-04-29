@@ -1,15 +1,12 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-@ToString
-@Builder
 @Getter
 @Entity
 @Table(name= "job_proposition")
@@ -26,7 +23,7 @@ public class JobProposition implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "jobPropositions")
-    private Set<Skill> skills;
+    private Set<Skill> skills = new HashSet<>();
 
     @ManyToOne
     private Company company;
@@ -34,4 +31,19 @@ public class JobProposition implements Serializable {
     private String jobDescription;
 
     private int grossWage;
+
+    public JobProposition() {
+    }
+
+    @Override
+    public String toString() {
+        return "JobProposition{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", skills=" + skills +
+                ", company=" + company +
+                ", jobDescription='" + jobDescription + '\'' +
+                ", grossWage=" + grossWage +
+                '}';
+    }
 }

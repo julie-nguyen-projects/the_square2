@@ -1,15 +1,10 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
-@ToString
-@Builder
 @Getter
 @Entity
 @Table(name= "training_educ_level")
@@ -25,6 +20,14 @@ public class TrainingEducationLevel implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "trainingsEducationLevels")
-    private Set<User> users;
+    public TrainingEducationLevel() {
+    }
+
+    @Override
+    public String toString() {
+        return "TrainingEducationLevel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

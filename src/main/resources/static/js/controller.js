@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     function fillUsersArray(data) {
         data.forEach(function(item){
-            $('tbody').append('<tr>' +
+            $('#usersTable').children('tbody').append('<tr>' +
                 '<td>'+item.firstName+'</td>' +
                 '<td>'+item.lastName+'</td>' +
                 '<td>'+item.city.name +'</td>' +

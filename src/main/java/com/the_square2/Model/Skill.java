@@ -1,15 +1,13 @@
 package com.the_square2.Model;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-@ToString
-@Builder
 @Getter
 @Entity
 @Table(name= "skill")
@@ -25,14 +23,23 @@ public class Skill implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "skills")
-    private Set<User> users;
-
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "skills_jobs",
             joinColumns = {@JoinColumn(name = "skill_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "job_id", referencedColumnName = "id")}
     )
-    private Set<JobProposition> jobPropositions;
+    private Set<JobProposition> jobPropositions = new HashSet<>();
+
+    public Skill() {
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
